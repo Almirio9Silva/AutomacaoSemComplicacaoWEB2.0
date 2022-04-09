@@ -1,5 +1,6 @@
 package br.com.chronosAcademy.automacaoWeb;
 
+import br.com.chronosAcademy.core.Driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import static org.junit.Assert.*;
 
@@ -8,19 +9,22 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement; 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TesteWeb {
-    ChromeDriver driver;
+    WebDriver driver;
+    Driver driverWeb;
 
     @Before
-    public void inicializaTeste(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+    public void inicializaTeste() {
+        driverWeb = new Driver("CHROME");
+        driver = driverWeb.getDriver();
         driver.get("https://www.chronosacademy.com.br");
+
     }
+
 
     @Test
     public void primeiroTeste() {
@@ -32,7 +36,7 @@ public class TesteWeb {
         assertEquals("Porque Tempo É Conhecimento", titulo);
     }
 
-    @Ignore
+    //@Ignore
     @Test
     public void segundoTeste() {
 
